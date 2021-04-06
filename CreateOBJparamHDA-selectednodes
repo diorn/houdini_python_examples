@@ -1,0 +1,48 @@
+#Add Folders and parameters:
+### HIDE INTERFACE OF NULL
+import hou
+
+
+n = hou.selectedNodes()
+for i in range(len(n)):
+        g = n[i].parmTemplateGroup()
+        g.hideFolder("Transform",True)
+        g.hideFolder("Render",True)
+        g.hideFolder("Misc",True)
+        g.hideFolder("Redshift OBJ",True)
+        n[i].setParmTemplateGroup(g)
+
+
+n = hou.selectedNodes()
+for i in range(len(n)):
+    g = n[i].parmTemplateGroup()
+    f = [
+        hou.ToggleParmTemplate("lowgeo", "Low Geo Exclude", default_value=False),
+        hou.FolderParmTemplate(
+            "matadj",
+            "MAT Adjustments",
+            folder_type=hou.folderType.Simple,
+            parm_templates=[
+                hou.FloatParmTemplate("transl_weight", "Translucency Weight", 1, default_value=[0.39],min=0, max=1),
+                hou.ToggleParmTemplate("oldvar", "OLD TEX VARIATION", default_value=False),
+                hou.IntParmTemplate("lodsel", "LOD TEX Selector", 1,min=0, max=2),
+                hou.FloatParmTemplate("bmpscale", "Bump Scale", 1, default_value=[0.5],min=0, max=1)
+            ]
+        ),
+        hou.FolderParmTemplate(
+            "colorcorrect",
+            "Color Correct",
+            folder_type=hou.folderType.Simple,
+            parm_templates=[
+                hou.FloatParmTemplate("color_var", "Color Variation Mix", 1, default_value=[0.25],min=0, max=1),
+                hou.FloatParmTemplate("cc_colorr", "Color Average Color", 3,look=hou.parmLook.ColorSquare,naming_scheme=hou.parmNamingScheme.RGBA),
+                hou.FloatParmTemplate("cc_mix", "CC Average Color Mix", 1, default_value=[0],min=0, max=1)
+            ]
+        )
+    ]
+    for x in f:
+        g.append(x)
+        n[i].setParmTemplateGroup(g)
+        
+        
+     
