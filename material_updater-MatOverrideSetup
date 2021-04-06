@@ -23,9 +23,7 @@ mat = shader_name.node('Material1')
 
 
 
-
-
-
+#'''
 #Add TranslWeight
 mat.parm('transl_weight').setExpression('ch("../../../transl_weight")')
 
@@ -63,11 +61,13 @@ Cdv.parm('layer1_mask').setExpression('ch("../../../color_var")')
 User_CD = shader_name.node('RSUser_CD')
 Cdv.setInput(1,User_CD,0)
 
+#############################################################################################
+############################################################################################
 
 
 #Add Lod texture variation parameteres
 shader_children = shader_name.children()
-lookfor = "LOD_switcher"                 #look for this string in child nodes'names 
+lookfor = "LOD_switcher"                 #look for this string in child nodes names 
 for child in shader_children:            #initialize a loop 
     namelod = child.name()               #read currently processed child name 
     fndstr = namelod.find(lookfor)       #look for the string of interest in that name 
@@ -89,18 +89,16 @@ ls3 = shader_name.node('LOD_switcher3')
 toolutils.replaceOutputConnections(ls3, 0, bump, 0) 
 bump.setInput(0,ls3,0) 
 ##Set bmp parms
-bump.parm('inputType').set('Tangent-Space_Normal') 
+bump.parm('inputType').set('Tangent-Space Normal') 
 bump.parm('scale').setExpression('ch("../../../bmpscale")') 
 
-
-
-#Delete wrong RSColorMix2
-oldcolormix=shader_name.node('RSColorMix2')
-oldcolormix.destroy()
+#'''
 
 
 
 
+
+#'''
 ##########################################################################################
 ##########################################################################################
 #Add RSmat override params
@@ -124,9 +122,17 @@ existing_parm = grp.find("texdir")
 grp.insertBefore(existing_parm, new_parm)
 shader_name.setParmTemplateGroup(grp)
 shader_name.parm('lodsel').setExpression('ch("../../lodsel")')
+#'''
 
 
 
+
+'''
+######################################################################
+#Delete wrong RSColorMix2
+oldcolormix=shader_name.node('RSColorMix2')
+oldcolormix.destroy()
+'''
 
 
 
