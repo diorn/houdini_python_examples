@@ -98,16 +98,32 @@ bump.parm('scale').setExpression('ch("../../../bmpscale")')
 oldcolormix=shader_name.node('RSColorMix2')
 oldcolormix.destroy()
 
+
+
+
+##########################################################################################
 ##########################################################################################
 #Add RSmat override params
-n = hou.node("/obj/box_object1/box1")
-g = n.parmTemplateGroup()
-p = hou.ToggleParmTemplate("parm3", "Parameter 3", default_value=False)
+g = shader_name.parmTemplateGroup()
+f = hou.FolderParmTemplate('Redshift_SHOP_parmSwitcher3', 'Settings')
+p = hou.IntParmTemplate("lodsel", "LOD TEX Selector", 1,min=0, max=2)
 
-# replace(old parm id or index, new parm)
-g.replace("parm2", p)
 
-n.setParmTemplateGroup(g)
+grp = shader_name.parmTemplateGroup()
+new_parm = hou.ToggleParmTemplate("oldvar", "OLD TEX VARIATION", default_value=False)
+existing_parm = grp.find("texdir")
+grp.insertBefore(existing_parm, new_parm)
+shader_name.setParmTemplateGroup(grp)
+shader_name.parm('oldvar').setExpression('ch("../../oldvar")')
+
+
+
+grp = shader_name.parmTemplateGroup()
+new_parm = hou.IntParmTemplate("lodsel", "LOD TEX Selector", 1,min=0, max=2)
+existing_parm = grp.find("texdir")
+grp.insertBefore(existing_parm, new_parm)
+shader_name.setParmTemplateGroup(grp)
+shader_name.parm('lodsel').setExpression('ch("../../lodsel")')
 
 
 
