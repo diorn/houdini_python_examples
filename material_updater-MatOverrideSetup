@@ -23,7 +23,7 @@ mat = shader_name.node('Material1')
 
 
 
-#'''
+
 #Add TranslWeight
 mat.parm('transl_weight').setExpression('ch("../../../transl_weight")')
 
@@ -92,13 +92,9 @@ bump.setInput(0,ls3,0)
 bump.parm('inputType').set('Tangent-Space Normal') 
 bump.parm('scale').setExpression('ch("../../../bmpscale")') 
 
-#'''
 
 
-
-
-
-#'''
+#
 ##########################################################################################
 ##########################################################################################
 #Add RSmat override params
@@ -122,20 +118,23 @@ existing_parm = grp.find("texdir")
 grp.insertBefore(existing_parm, new_parm)
 shader_name.setParmTemplateGroup(grp)
 shader_name.parm('lodsel').setExpression('ch("../../lodsel")')
-#'''
 
 
 
 
-'''
+#################################################################
+##Works only as a shelf button
 ######################################################################
 #Delete wrong RSColorMix2
-oldcolormix=shader_name.node('RSColorMix2')
-oldcolormix.destroy()
-'''
+node = shader_name.node('RSColorMix2')
+if node:
+    print "node %s exists and it's a %s" % (node.path(), node.type().name()) 
+    node.destroy()
+    print "deleted"
+else:
+    print "node %s doesn't exist" % path 
 
-
-
+    
 
 
 
