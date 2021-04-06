@@ -132,9 +132,8 @@ if node:
     node.destroy()
     print "deleted"
 else:
-    print "node %s doesn't exist" % path 
+    print "node %s doesn't exist" 
 
     
-
 
 
