@@ -1,0 +1,19 @@
+import hou
+import toolutils
+# Current selected Asset Node Name  
+rootNode = hou.selectedNodes()[0]
+rootNode_name = root.currentNode.name()
+print rootNode
+
+#Adjust CC name
+g = rootNode.parmTemplateGroup()
+n = rootNode
+
+g.remove('cc_colorr')
+
+new_parm = hou.FloatParmTemplate("cc_color", "Color Average Color", 3,look=hou.parmLook.ColorSquare,naming_scheme=hou.parmNamingScheme.RGBA)
+existing_parm = g.find("cc_mix")  
+g.insertBefore(existing_parm, new_parm)
+
+n.setParmTemplateGroup(g)
+n.type().definition().setParmTemplateGroup(g)
