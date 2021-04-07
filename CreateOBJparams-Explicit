@@ -34,7 +34,7 @@ f = [
         folder_type=hou.folderType.Simple,
         parm_templates=[
             hou.FloatParmTemplate("color_var", "Color Variation Mix", 1, default_value=[0.25],min=0, max=1),
-            hou.FloatParmTemplate("cc_colorr", "Color Average Color", 3,look=hou.parmLook.ColorSquare,naming_scheme=hou.parmNamingScheme.RGBA),
+            hou.FloatParmTemplate("cc_color", "Color Average Color", 3,look=hou.parmLook.ColorSquare,naming_scheme=hou.parmNamingScheme.RGBA),
             hou.FloatParmTemplate("cc_mix", "CC Average Color Mix", 1, default_value=[0],min=0, max=1)
         ]
     )
