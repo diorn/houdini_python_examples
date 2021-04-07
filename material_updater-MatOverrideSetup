@@ -39,7 +39,7 @@ CC.moveToGoodPosition()
 CC.setInput(0,switch_var,0) 
 
 #Set CC to params
-CC.parm('layer1_blend_mode').set('Average')            #set CCx parameter
+CC.parm('layer1_blend_mode').set('1')            #set CCx parameter by token = Average
 CC.parm('layer1_colorr').setExpression('ch("../../../cc_colorr")')
 CC.parm('layer1_colorg').setExpression('ch("../../../cc_colorg")')
 CC.parm('layer1_colorb').setExpression('ch("../../../cc_colorb")')
@@ -55,7 +55,7 @@ toolutils.replaceOutputConnections(CC, 0, Cdv, 0)
 Cdv.moveToGoodPosition()
 Cdv.setInput(0,CC,0)
 #Set CC to params
-Cdv.parm('layer1_blend_mode').set('Overlay')            #set CCx parameter
+Cdv.parm('layer1_blend_mode').set("13")            #set CCx parameter by token = Overlay
 Cdv.parm('layer1_mask').setExpression('ch("../../../color_var")')
 #Connect to User CD-node
 User_CD = shader_name.node('RSUser_CD')
@@ -89,7 +89,7 @@ ls3 = shader_name.node('LOD_switcher3')
 toolutils.replaceOutputConnections(ls3, 0, bump, 0) 
 bump.setInput(0,ls3,0) 
 ##Set bmp parms
-bump.parm('inputType').set('Tangent-Space Normal') 
+bump.parm('inputType').set('1') 
 bump.parm('scale').setExpression('ch("../../../bmpscale")') 
 
 
@@ -122,6 +122,8 @@ existing_parm = grp.find("texdir")
 grp.insertBefore(existing_parm, new_parm)
 shader_name.setParmTemplateGroup(grp)
 shader_name.parm('lodsel').setExpression('ch("../../lodsel")')
+
+
 
 
 #################################################################
