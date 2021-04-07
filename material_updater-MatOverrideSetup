@@ -97,12 +97,16 @@ bump.parm('scale').setExpression('ch("../../../bmpscale")')
 #
 ##########################################################################################
 ##########################################################################################
-#Add RSmat override params
+##Add RSmat override params
+#Change var tex switcher
 g = shader_name.parmTemplateGroup()
 f = hou.FolderParmTemplate('Redshift_SHOP_parmSwitcher3', 'Settings')
 p = hou.IntParmTemplate("lodsel", "LOD TEX Selector", 1,min=0, max=2)
 
 
+
+
+##Add params to MatBuilder
 grp = shader_name.parmTemplateGroup()
 new_parm = hou.ToggleParmTemplate("oldvar", "OLD TEX VARIATION", default_value=False)
 existing_parm = grp.find("texdir")
@@ -118,8 +122,6 @@ existing_parm = grp.find("texdir")
 grp.insertBefore(existing_parm, new_parm)
 shader_name.setParmTemplateGroup(grp)
 shader_name.parm('lodsel').setExpression('ch("../../lodsel")')
-
-
 
 
 #################################################################
